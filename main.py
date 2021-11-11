@@ -1,4 +1,5 @@
 #Set-up a singular node
+#sdjasnjdinsa
 class Node:
     def __init__(self, dataval=None):
         self.dataval = dataval
