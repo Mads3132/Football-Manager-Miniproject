@@ -103,12 +103,19 @@ def dream_team():
 
     print("Your final team is: ",my_team)
     print("Are you happy with this team?", Fore.GREEN + "Y" + Style.RESET_ALL, "/",Fore.RED + "N" + Style.RESET_ALL)
+    confirm()
+
+
+def confirm():
     confirmation = input()
-    #If yes, sends data to client?
+    # If yes, sends data to client?
     if confirmation == 'Y':
         print("Next file yeehaw")
-    #Else reset
+    # Else reset
     if confirmation == 'N':
         dream_team()
+    if not confirmation == 'Y' or confirmation == 'N':
+        print("Choose valid response Y/N")
+        confirm()
 
 dream_team()
