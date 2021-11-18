@@ -16,9 +16,9 @@ class sim:
      aguero = ["Aguero", 78, 90]
 
      my_team_score = 0  # user team score
-     opp_team_score = 0  # other team score
+     opp_team_score = 0  # opposing team score
      match_time = 0 # match time to control when the game should end
-     t = 6 # antal runder
+     t = 6 # rounds
 
      game_on = "The whistle is blowed and the game is on! "
      player_are = 'is headed for the ball!'
