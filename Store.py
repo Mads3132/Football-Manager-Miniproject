@@ -87,7 +87,7 @@ def dream_team():
             dream_team()
 
         if buy_player > len(splayers):
-            print("Please pick a valid number")
+            print(Fore.RED + "Please pick a valid number" + Style.RESET_ALL)
             print("-------------------------------")
             continue
 
@@ -97,7 +97,7 @@ def dream_team():
             print(" ")
             splayers.pop(int(buy_player))
         if my_budget < 0:
-            print(Fore.RED + "No money, if you want to reset, type '100'" + Style.RESET_ALL)
+            print(Fore.RED + "Not enough money, if you want to reset, type '100'" + Style.RESET_ALL)
             my_budget += splayers[int(buy_player)][1]
         i = 0
 
