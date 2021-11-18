@@ -1,4 +1,8 @@
-#Players har Price, Pace, Shoot
+import colorama
+from colorama import Fore
+from colorama import Style
+
+#Players has Price, Pace, Shoot
 messi = ["Messi", 50, 87, 92]
 hart = ["Hart", 20, 58, 64]
 curtois = ["Curtois", 18, 52, 74]
@@ -26,6 +30,7 @@ samuel = ["Samuel", 2, 54, 58]
 billy = ["Billy", 4, 55, 59]
 aaron = ["Aaron", 5, 60, 60]
 
+#Collect all players in an array
 players = []
 players.append(messi)
 players.append(hart)
@@ -60,7 +65,8 @@ def dream_team():
     i = 0
     splayers = sorted(players)
     my_team = []
-    while len(my_team) < 12:
+    #Makes sure that the application doesn't allow you to pick more than 11 players
+    while len(my_team) < 11:
         print("Nr.", "Name", "Price", "Pace", "Shoot")
         print("-------------------------------")
 
@@ -68,12 +74,12 @@ def dream_team():
             print(i, splayers[i])
             i += 1
         print("-------------------------------")
-        print("Your players: ", my_team, "Remaining funds: ", my_budget, "Million dollars")
+        print(Fore.CYAN + "Players needed:" + Style.RESET_ALL, 11 - len(my_team), Fore.CYAN + "Your players:" + Style.RESET_ALL, my_team,Fore.CYAN + "Remaining funds:" + Style.RESET_ALL, my_budget, "Million dollars")
 
         try:
             buy_player = int(input('Number you want to buy: '))
         except:
-            print("Please pick a valid number")
+            print(Fore.RED + "Please pick a valid number" + Style.RESET_ALL)
             print("-------------------------------")
             continue
 
@@ -86,16 +92,23 @@ def dream_team():
             continue
 
         my_budget -= splayers[int(buy_player)][1]
-        if my_budget > 0:
+        if my_budget >= 0:
             my_team.append(splayers[int(buy_player)])
             print(" ")
             splayers.pop(int(buy_player))
         if my_budget < 0:
-            print("No monetos, if you want to reset type '100'")
+            print(Fore.RED + "No money, if you want to reset, type '100'" + Style.RESET_ALL)
             my_budget += splayers[int(buy_player)][1]
         i = 0
 
-
+    print("Your final team is: ",my_team)
+    print("Are you happy with this team?", Fore.GREEN + "Y" + Style.RESET_ALL, "/",Fore.RED + "N" + Style.RESET_ALL)
+    confirmation = input()
+    #If yes, sends data to client?
+    if confirmation == 'Y':
+        print("Next file yeehaw")
+    #Else reset
+    if confirmation == 'N':
+        dream_team()
 
 dream_team()
-
