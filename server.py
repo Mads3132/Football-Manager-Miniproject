@@ -18,8 +18,7 @@ def threaded_client(connection):
     connection.send(str.encode('Welcome to the server'))
     while True:
         data = connection.recv(1024)
-        reply = 'Server says: ' + data.decode('utf-8')
-
+        reply = 'This is your starting lineup: ' + data.decode('utf-8')
         if not data:
             break
         connection.sendall(str.encode(reply))

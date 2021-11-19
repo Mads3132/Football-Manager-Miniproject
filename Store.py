@@ -1,6 +1,7 @@
 import colorama
 from colorama import Fore
 from colorama import Style
+import socket
 
 #Players has Price, Pace, Shoot
 messi = ["Messi", 50, 87, 92]
@@ -103,19 +104,34 @@ def dream_team():
 
     print("Your final team is: ",my_team)
     print("Are you happy with this team?", Fore.GREEN + "Y" + Style.RESET_ALL, "/",Fore.RED + "N" + Style.RESET_ALL)
-    confirm()
-
-
-def confirm():
     confirmation = input()
     # If yes, sends data to client?
     if confirmation == 'Y':
-        print("Next file yeehaw")
+        full_str = ' '.join([str(elem) for elem in my_team])
+        ClientSocket = socket.socket()
+        host = '127.0.0.1'
+        port = 5555
+
+        print('Waiting for connection')
+        try:
+            ClientSocket.connect((host, port))
+        except socket.error as e:
+            print(str(e))
+
+        Response = ClientSocket.recv(1024)
+
+        # This takes user input, will be changed from this
+        while True:
+            ClientSocket.send(str.encode(full_str))
+            Response = ClientSocket.recv(1024)
+            print(Response.decode('utf-8'))
+            break
+
+        ClientSocket.close()
     # Else reset
     if confirmation == 'N':
+
         dream_team()
     if not confirmation == 'Y' or confirmation == 'N':
         print("Choose valid response Y/N")
-        confirm()
-
 dream_team()
